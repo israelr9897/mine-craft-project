@@ -5,9 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2D MineCraft</title>
     <script src="./game.js" defer></script>
+    <style>
+        #continer{
+            width: 4800px;
+            height: 1440px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, 3rem);
+            grid-template-rows: repeat(auto-fill, 3rem);
+        }
+
+        .cell{
+            background-color: #87CEEB;
+        }
+        
+        .cell:hover{
+            border: 1.5px black solid;
+        }
+        
+        .dirt-top{
+            background-image: url("./assets/dirt-top.png");
+            background-size: cover;
+        }
+        .dirt{
+            background-image: url("./assets/dirt.png");
+            background-size: cover;
+    
+        }
+        
+        .stone{
+            background-image: url("./assets/stone.png");
+            background-size: cover;
+
+        }
+        
+        .bedrock{
+            background-image: url("./assets/bedrock.png");
+            background-size: cover;
+    
+        }
+    </style>
 
 </head>
 <body>
-    
+    <div id="continer">
+    </div>
 </body>
 </html>
