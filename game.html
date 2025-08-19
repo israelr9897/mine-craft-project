@@ -1,13 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2D MineCraft</title>
     <script src="./game.js" defer></script>
+    <style>
+        body {
+            background-color: aqua;
+        }
+
+        .stack {
+            position: absolute;
+            top: 192px;
+            margin-left: 20px;
+        }
+
+        .item {
+            width: 48px;
+            height: 48px;
+            align-content: center;
+            text-align: center;
+            display: flex;
+            margin-top: 10px;
+            /* flex-wrap: nowrap; */
+        }
+
+        .quantity{
+            
+        }
+    </style>
 
 </head>
+
 <body>
-    
+    <div class="stack">
+        <div class="item" id="leaves">
+            <img src="assets\oak-leaves.png" alt="">
+            <span class="quantity">
+
+            </span>
+        </div>
+        <div class="item" id="log">
+            <img src="assets\oak-log.png" alt="">
+            <span class="quantity">
+
+            </span>
+        </div>
+        <div class="item" id="grass">
+            <img src="assets\grass.png" alt="">
+            <span class="quantity">
+
+            </span>
+        </div>
+        <div class="item" id="dirt">
+            <img src="assets\dirt.png" alt="">
+            <span class="quantity">
+
+            </span>
+        </div>
+        <div class="item" id="stones">
+            <img src="assets\stone.png" alt="">
+            <span class="quantity">
+
+            </span>
+        </div>
+    </div>
 </body>
+
 </html>
