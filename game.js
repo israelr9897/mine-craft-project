@@ -1,7 +1,18 @@
 import { trees } from "./treesModels.js";
 
-const toolElements = document.querySelectorAll(".tool");
+const toolElements = document.querySelectorAll(".tool"); // Select all tool elements
 const continer = document.getElementById("continer");
+const stackHtml = document.getElementById("stack")
+
+
+
+const stack = {
+  leaves: 0,
+  trunk: 0,
+  grass: 0,
+  dirt: 0,
+  stone: 0
+}
 
 const tools = {
   pickaxe: "stone",
@@ -9,6 +20,7 @@ const tools = {
   shovel: ["dirt", "grass"],
   shears: "leaves",
 };
+
 
 function createTree(local) {
   const num = Math.floor(Math.random() * trees.length)
@@ -20,32 +32,44 @@ function createTree(local) {
 }
 
 let handItem = ""; // The tool currently selected by the user
+let selectedTool = null; // Tracks the currently selected tool
 
 // Select all tool elements
-toolElements.forEach((toolEl) => {
+toolElements.forEach(toolEl => {
   toolEl.addEventListener("click", () => {
-    // Clear previously selected tools
-    toolElements.forEach((el) => el.classList.remove("selected"));
+    if (selectedTool === toolEl) {
+      // Same tool clicked again → unselect
+      toolEl.classList.remove("selected");
+      selectedTool = null;
+      handItem = "";
+      document.body.style.cursor = "auto";
+    } else {
+      // New tool selected
+      toolElements.forEach(el => el.classList.remove("selected")); // Clear previous
+      toolEl.classList.add("selected"); // Highlight current
 
-    // Set the new hand item from the element's id
-    handItem = toolEl.id;
-    console.log(handItem);
+      handItem = toolEl.id;
+      selectedTool = toolEl;
 
-    // Add a visual indication (like border or background)
-    toolEl.classList.add("selected");
 
-    document.body.style.cursor = `url(./assets/${handItem}.webp), auto`;
+      // Update cursor to match selected tool icon
+      changeCursor()
+    }
   });
 });
 
+
+function changeCursor() {
+  document.body.style.cursor = `url(./assets/cursor/${handItem}.png), auto`;
+}
+
 function clickRemove(div) {
-  if (!tools[handItem].includes(div.classList[1])) return;
-  insertImg(div.classList[1]);
-  plusQuantity(div.classList[1]);
+  if (!tools[handItem].includes(div.classList[1])) return
+  updateImageStack(div.classList[1])
   div.className = "cell";
 }
 
-const allDivsList = [];
+const allDivsList = []
 
 let lastNumber = null;
 
@@ -90,35 +114,31 @@ for (let i = 0; i < 100 * 30; i++) {
   allDivsList.push(div);
 }
 
-function plusQuantity(quantityKind) {
-  const quantity = document.getElementById(quantityKind + "Quantity");
-  if (quantity.innerText === undefined) {
-    quantity.innerText = 0;
+
+// function lessQuantity() {
+//   const quantity = document.querySelector("quantity");
+//   quantity--;
+// }
+
+function updateImageStack(className) {
+  if(!stack[className]){
+    const p = document.createElement("p")
+    p.id = `p-${className}`
+    const div = document.createElement("div")
+    div.appendChild(p)
+    div.classList.add(className)
+    stackHtml.appendChild(div)
   }
-  quantity.innerText++;
+  stack[className]++
+  const quantity = document.getElementById(`p-${className}`)
+  quantity.innerText = stack[className]
+  quantity.classList.add("quantity")
 }
 
-function lessQuantity() {
-  const quantity = document.querySelector("quantity");
-  quantity--;
-}
 
-function insertImg(imgKind) {
-  const img = document.getElementById(imgKind + "Img");
-  if (imgKind === "leaves") {
-    img.src = "assets/leaves.png";
-    img.alt = "leaves";
-  } else if (imgKind === "trunk") {
-    img.src = "assets/trunk.png";
-    img.alt = "trunk";
-  } else if (imgKind === "grass") {
-    img.src = "assets/grass.png";
-    img.alt = "grass";
-  } else if (imgKind === "dirt") {
-    img.src = "assets/dirt.png";
-    img.alt = "dirt";
-  } else if (imgKind === "stone") {
-    img.src = "assets/stone.png";
-    img.alt = "stone";
-  }
-}
+// function clickBuild() {
+//   const resource = document.getElementById()
+//   resource.addEventListener("click", (e) => {
+
+//   })
+// }

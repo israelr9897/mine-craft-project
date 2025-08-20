@@ -23,7 +23,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, 3rem);
             grid-template-rows: repeat(auto-fill, 3rem);
-            
+
         }
 
         @font-face {
@@ -32,9 +32,14 @@
         }
 
         .stack {
-            position: absolute;
-            top: 192px;
-            margin-left: 20px;
+            position: fixed;
+            top: 250px;
+            margin-left: 15px;
+            width: 48px;
+            height: 260px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
         .item {
@@ -44,61 +49,63 @@
             text-align: center;
             display: flex;
             margin-top: 10px;
-            /* flex-wrap: nowrap; */
         }
 
-        .quantity {
-            display: flex;
-            flex-direction: column;
-            justify-content: end;
-            font-family: 'minecraft', sans-serif;
-        }
-
-
-
+        
         .cell {
             background-color: #87CEEB;
         }
-
+        
         .cell:hover {
             border: 1.5px black solid;
         }
-
+        
         .grass {
             background-image: url("./assets/grass.png");
             background-size: cover;
+            height: 48px;
         }
-
+        
         .dirt {
             background-image: url("./assets/dirt.png");
             background-size: cover;
-
+            height: 48px;
+            
         }
-
+        
         .stone {
             background-image: url("./assets/stone.png");
             background-size: cover;
-
+            height: 48px;
+            
         }
-
+        
         .bedrock {
             background-image: url("./assets/bedrock.png");
             background-size: cover;
-
+            
         }
+            
+            .trunk {
+                background-image: url("./assets/trunk.png");
+                background-size: cover;
+                height: 48px;
+            }
+            
+            .leaves {
+                background-image: url("./assets/leaves.png");
+                background-size: cover;
+                height: 48px;
+            } 
 
-        .trunk {
-            background-image: url("./assets/trunk.png");
-            background-size: cover;
-
-        }
-
-        .leaves {
-            background-image: url("./assets/leaves.png");
-            background-size: cover;
-
-        } 
-    </style>
+            .quantity {
+                display: flex;
+                flex-direction: column;
+                justify-content: end;
+                /* justify-content: right; */
+                font-family: 'minecraft', sans-serif;
+            }
+            </style>
 
 </head>
 
@@ -106,45 +113,13 @@
 <body>
     <div id="continer">
         <section id="tools" class="tools">
-            <div id="pickaxe" class="tool item"><img src="./assets/pickaxe.webp" alt="Pickaxe" /></div>
-            <div id="axe" class="tool item"><img src="./assets/axe.webp" alt="Axe" /></div>
-            <div id="shovel" class="tool item"><img src="./assets/shovel.webp" alt="Shovel" /></div>
-            <div id="shears" class="tool item"><img src="./assets/shears.webp" alt="Shears" /></div>
+            <div id="pickaxe" class="tool item"><img src="./assets/pickaxe.png" alt="Pickaxe" /></div>
+            <div id="axe" class="tool item"><img src="./assets/axe.png" alt="Axe" /></div>
+            <div id="shovel" class="tool item"><img src="./assets/shovel.png" alt="Shovel" /></div>
+            <div id="shears" class="tool item"><img src="./assets/shears.png" alt="Shears" /></div>
         </section>
 
-        <div class="stack">
-            <div class="item" id="leaves">
-                <img id="leavesImg">
-                <span id="leavesQuantity">
-                    
-                </span>
-            </div>
-            <div class=" item" id="trunk">
-                <img id="trunkImg">
-                <span id="trunkQuantity" style="display: none;">
-                    
-                </span>
-            </div>
-            <div class="item" id="grass">
-                <img id="grassImg">
-                <span id="grassQuantity">
-                    
-                </span>
-            </div>
-            <div class="item" id="dirt">
-                <img id="dirtImg">
-                <span id="dirtQuantity">
-                    
-                </span>
-            </div>
-            <div class="item" id="stone">
-                <img id="stoneImg">
-                <span id="stoneQuantity">
-                    
-
-                </span>
-            </div>
-        </div>
+        <div class="stack" id="stack"></div>
     </div>
 </body>
 
