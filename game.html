@@ -39,8 +39,8 @@
                 img.alt = "stone"
             }
         }
-
-    </script>
+        
+        </script>
 
     <style>
         @font-face {
@@ -70,11 +70,72 @@
             justify-content: end;
             font-family: 'minecraft', sans-serif;
         }
+
+
+        .cell {
+            background-color: #87CEEB;
+        }
+
+        .cell:hover {
+            border: 1.5px black solid;
+        }
+
+        .grass {
+            background-image: url("./assets/grass.png");
+            background-size: cover;
+        }
+
+        .dirt {
+            background-image: url("./assets/dirt.png");
+            background-size: cover;
+
+        }
+
+        .stone {
+            background-image: url("./assets/stone.png");
+            background-size: cover;
+
+        }
+
+        .bedrock {
+            background-image: url("./assets/bedrock.png");
+            background-size: cover;
+
+        }
+
+        /* .tree {
+            width: 336px;
+            height: 432px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, 3rem);
+            grid-template-rows: repeat(auto-fill, 3rem);
+        }
+
+        .trunk {
+            grid-row: 3/5;
+            background-image: url("./assets/trunk.png");
+            background-size: cover;
+
+        }
+
+        .leaves {
+            background-image: url("./assets/leaves.png");
+            background-size: cover;
+
+        } */
     </style>
 
 </head>
 
+
 <body>
+   <section id="tools" class="tools">
+      <div id="pickaxe" class="tool"><img src="./assets/pickaxe.webp" alt="Pickaxe" /></div>
+      <div id="axe" class="tool"><img src="./assets/axe.webp" alt="Axe" /></div>
+      <div id="shovel" class="tool"><img src="./assets/shovel.webp" alt="Shovel" /></div>
+      <div id="shears" class="tool"><img src="./assets/shears.webp" alt="Shears" /></div>
+    </section>
+  
     <div class="stack">
         <div class="item" id="leaves">
             <img id="leavesImg">
@@ -107,6 +168,13 @@
             </span>
         </div>
     </div>
+    <div id="continer">
+        <!-- <div class="tree">
+            <div class="trunk"></div>
+        </div> -->
+    </div>
 </body>
 
+
 </html>
+
