@@ -51,61 +51,82 @@
             margin-top: 10px;
         }
 
-        
+
         .cell {
             background-color: #87CEEB;
         }
-        
+
         .cell:hover {
             border: 1.5px black solid;
         }
-        
+
         .grass {
             background-image: url("./assets/grass.png");
             background-size: cover;
             height: 48px;
         }
-        
+
         .dirt {
             background-image: url("./assets/dirt.png");
             background-size: cover;
             height: 48px;
-            
+
         }
-        
+
         .stone {
             background-image: url("./assets/stone.png");
             background-size: cover;
             height: 48px;
-            
+
         }
-        
+
         .bedrock {
             background-image: url("./assets/bedrock.png");
             background-size: cover;
+
+        }
+
+        .trunk {
+            background-image: url("./assets/trunk.png");
+            background-size: cover;
+            height: 48px;
+        }
+
+        .leaves {
+            background-image: url("./assets/leaves.png");
+            background-size: cover;
+            height: 48px;
+        }
+
+        .quantity {
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            /* justify-content: right; */
+            font-family: 'minecraft', sans-serif;
+        }
+        
+        .stack div {
+            border: 1.5px white solid;
+            cursor: pointer;
+            
+           
+            
             
         }
-            
-            .trunk {
-                background-image: url("./assets/trunk.png");
-                background-size: cover;
-                height: 48px;
-            }
-            
-            .leaves {
-                background-image: url("./assets/leaves.png");
-                background-size: cover;
-                height: 48px;
-            } 
 
-            .quantity {
-                display: flex;
-                flex-direction: column;
-                justify-content: end;
-                /* justify-content: right; */
-                font-family: 'minecraft', sans-serif;
-            }
-            </style>
+        .stack  div + p {
+            display: flex;
+            align-items: end;
+            margin-top: -23px;
+            margin-right: -18px;
+
+        }
+        .stack div:hover {
+            border: 3px rgb(242, 28, 28) solid;
+
+        }
+    </style>
 
 </head>
 
