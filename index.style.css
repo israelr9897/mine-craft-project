@@ -1,0 +1,52 @@
+@font-face {
+    font-family: 'minecraft';
+    src: url(./MinecraftRegular-Bmg3.otf) format('opentype');
+}
+html, body {
+    height: 100%;         
+    margin: 0;            
+}
+
+body {
+    /* margin: 0;   */
+    background: url('assets/menu-background.jpg') no-repeat;
+    background-size: cover;   
+    /* background-position: center;  */
+}
+.menu {
+    display: flex;               
+    flex-direction: column;     
+    justify-content: center;    
+    align-items: center;         
+    height: 100vh;              
+}
+
+
+.menu img{
+    display: flex;               
+    justify-content: center;     
+    align-items: center;         
+    /* width: 492px;
+    height: 90px; */
+    width: 50%;
+    margin-bottom: 2rem;
+}
+    
+.button{
+    font-family: 'minecraft';
+    background-color: #A0A0A0;          
+    color: rgb(244, 242, 242); 
+    border: 2px solid #707070;                      
+    padding: 10px 20px;                   
+    border-radius: 5px;               
+    cursor: pointer;   
+    width: 30%;   
+    font-size: 2rem;
+    margin: 8px 0px;
+    /* box-shadow: 0px 3px 1px #707070; */
+    transition: transform 0.3s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-5px); 
+}
