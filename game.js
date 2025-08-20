@@ -36,6 +36,8 @@ function clickRemove(div) {
   div.className = "cell";
 }
 
+const allDivsList = []
+
 for (let i = 0; i < 100 * 30; i++) {
   const div = document.createElement("div");
   div.classList.add("cell");
