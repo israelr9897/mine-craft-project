@@ -59,8 +59,6 @@ function changeCursor(img) {
 }
 
 function clickRemove(div) {
-  console.log("handItem ", handItem);
-  console.log("div CN", div.className);
   if (
     div.className !== "cell" &&
     tools[handItem]?.some((item) => div.className.includes(item))
@@ -160,7 +158,6 @@ function clickBuild(event) {
   handItem = "";
   const imgName = event.target.className;
   if (!activ || imgName !== action) {
-    console.log(imgName);
     changeCursor(imgName);
     activ = true;
     action = imgName;
