@@ -65,14 +65,8 @@ for (let i = 0; i < 100 * 30; i++) {
 }
 
 function plusQuantity() {
-  // const p = document.createElement("p")
   const quantity = document.getElementsByClassName("quantity");
-  // if (quantity.innerText === "0") quantity.innerText = 0
-  // quantity.innerText="trrtgvrw";
-  console.log(quantity);
-  const num = Number(quantity.innerText)
-  console.log(num);
-  quantity.innerText = num
+  
 }
 function lessQuantity() {
   const quantity = document.querySelector("quantity");
