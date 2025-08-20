@@ -6,39 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2D MineCraft</title>
     <script src="./game.js" defer>
-        function plusQuantity() {
-            const quantity = document.getElementsByClassName("quantity")
-            quantity++
 
-        }
-        function lessQuantity() {
-            const quantity = document.querySelector("quantity")
-            quantity--
-        }
-
-        function insertImg(imgKind) {
-            const img = document.getElementById(imgKind + "Img")
-            if (imgKind === "leaves") {
-                img.src = "assets/oak-log.png"
-                img.alt = "leaves"
-            }
-            else if (imgKind === "log") {
-                img.src = "assets/grass.png"
-                img.alt = "log"
-            }
-            else if (imgKind === "grass") {
-                img.src = "assets/dirt.png"
-                img.alt = "grass"
-            }
-            else if (imgKind === "dirt") {
-                img.src = "assets/stone.png"
-                img.alt = "dirt"
-            }
-            else if (imgKind === "stone") {
-                img.src = "assets/stone.png"
-                img.alt = "stone"
-            }
-        }
 
     </script>
     <link rel="stylesheet" href="./game.style.css">
@@ -53,6 +21,11 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, 3rem);
             grid-template-rows: repeat(auto-fill, 3rem);
+        }
+
+        @font-face {
+            font-family: 'minecraft';
+            src: url(./MinecraftRegular-Bmg3.otf) format('opentype')
         }
 
         .stack {
@@ -77,6 +50,7 @@
             justify-content: end;
             font-family: 'minecraft', sans-serif;
         }
+
 
 
         .cell {
@@ -147,32 +121,32 @@
         <div class="stack">
             <div class="item" id="leaves">
                 <img id="leavesImg">
-                <span class="quantity">
-
+                <span id="leavesQuantity">
+                    
                 </span>
             </div>
-            <div class="item" id="log">
-                <img id="logImg">
-                <span class="quantity">
-
+            <div class=" item" id="trunk">
+                <img id="trunkImg">
+                <span id="trunkQuantity" style="display: none;">
+                    
                 </span>
             </div>
             <div class="item" id="grass">
                 <img id="grassImg">
-                <span class="quantity">
-
+                <span id="grassQuantity">
+                    
                 </span>
             </div>
             <div class="item" id="dirt">
                 <img id="dirtImg">
-                <span class="quantity">
-
+                <span id="dirtQuantity">
+                    
                 </span>
             </div>
-            <div class="item" id="stones">
-                <img id="stonesImg">
-                <span class="quantity">
-
+            <div class="item" id="stone">
+                <img id="stoneImg">
+                <span id="stoneQuantity">
+                    
                 </span>
             </div>
         </div>
