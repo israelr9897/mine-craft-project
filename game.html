@@ -5,44 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2D MineCraft</title>
-    <script src="./game.js" defer>
-        function plusQuantity() {
-            const quantity = document.getElementsByClassName("quantity")
-            quantity++
-
-        }
-        function lessQuantity() {
-            const quantity = document.querySelector("quantity")
-            quantity--
-        }
-
-        function insertImg(imgKind) {
-            const img = document.getElementById(imgKind + "Img")
-            if (imgKind === "leaves") {
-                img.src = "assets/oak-log.png"
-                img.alt = "leaves"
-            }
-            else if (imgKind === "log") {
-                img.src = "assets/grass.png"
-                img.alt = "log"
-            }
-            else if (imgKind === "grass") {
-                img.src = "assets/dirt.png"
-                img.alt = "grass"
-            }
-            else if (imgKind === "dirt") {
-                img.src = "assets/stone.png"
-                img.alt = "dirt"
-            }
-            else if (imgKind === "stone") {
-                img.src = "assets/stone.png"
-                img.alt = "stone"
-            }
-        }
-
-    </script>
+    <script src="./game.js" defer></script>
     <link rel="stylesheet" href="./game.style.css">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             background-color: aqua;
         }
@@ -170,7 +140,7 @@
                 </span>
             </div>
             <div class="item" id="stones">
-                <img id="stonesImg">
+                <img id="stoneßImg">
                 <span class="quantity">
 
                 </span>

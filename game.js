@@ -5,23 +5,22 @@ const tools = {
   pickaxe: "stone",
   axe: "trunk",
   shovel: "dirt",
-  shears: "leaves"
+  shears: "leaves",
 };
-
 
 let handItem = ""; // The tool currently selected by the user
 
 // Select all tool elements
 
-toolElements.forEach(toolEl => {
+toolElements.forEach((toolEl) => {
   toolEl.addEventListener("click", () => {
     // Clear previously selected tools
-    toolElements.forEach(el => el.classList.remove("selected"));
+    toolElements.forEach((el) => el.classList.remove("selected"));
 
     // Set the new hand item from the element's id
     handItem = toolEl.id;
     console.log(handItem);
-    
+
     // Add a visual indication (like border or background)
     toolEl.classList.add("selected");
 
@@ -29,16 +28,20 @@ toolElements.forEach(toolEl => {
   });
 });
 
-
 function clickRemove(div) {
+  console.log(div.classList[1]);
+  insertImg(div.classList[1])
+  plusQuantity()
   div.className = "cell";
 }
+
+const allDivsList = [];
 
 for (let i = 0; i < 100 * 30; i++) {
   const div = document.createElement("div");
   div.classList.add("cell");
-//   if(i === 10 || i === 11) div.classList.add("leaves");
-//   if(i === 110 || i === 111) div.classList.add("leaves");
+  //   if(i === 10 || i === 11) div.classList.add("leaves");
+  //   if(i === 110 || i === 111) div.classList.add("leaves");
   if (i >= 100 * 10 && i < 100 * 11) {
     div.classList.add("grass");
   } else if (i >= 100 * 11 && i < 100 * 15) {
@@ -51,11 +54,47 @@ for (let i = 0; i < 100 * 30; i++) {
   div.id = `cell-${i}`;
   div.addEventListener("click", () => clickRemove(div));
   continer.appendChild(div);
+  allDivsList.push(div)
 
-  div.addEventListener("click", () => {
-    if(div.classList === "cell"){
-      div.classList.add("dirt")
-    }
-    console.log(div.classList);
-  })
+  // div.addEventListener("click", () => {
+  //   if (div.classList === "cell") {
+  //     div.classList.add("dirt");
+  //   }
+  //   console.log(div.classList);
+  // });
+}
+
+function plusQuantity() {
+  // const p = document.createElement("p")
+  const quantity = document.getElementsByClassName("quantity");
+  // if (quantity.innerText === "0") quantity.innerText = 0
+  // quantity.innerText="trrtgvrw";
+  console.log(quantity);
+  const num = Number(quantity.innerText)
+  console.log(num);
+  quantity.innerText = num
+}
+function lessQuantity() {
+  const quantity = document.querySelector("quantity");
+  quantity--;
+}
+
+function insertImg(imgKind) {
+  const img = document.getElementById(imgKind + "Img");
+  if (imgKind === "leaves") {
+    img.src = "assets/leaves.png";
+    img.alt = "leaves";
+  } else if (imgKind === "trunk") {
+    img.src = "assets/trunk.png";
+    img.alt = "trunk";
+  } else if (imgKind === "grass") {
+    img.src = "assets/grass.png";
+    img.alt = "grass";
+  } else if (imgKind === "dirt") {
+    img.src = "assets/dirt.png";
+    img.alt = "dirt";
+  } else if (imgKind === "stone") {
+    img.src = "assets/stone.png";
+    img.alt = "stone";
+  }
 }
