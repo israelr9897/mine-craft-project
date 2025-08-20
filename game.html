@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2D MineCraft</title>
+    <script src="./game.js" defer type="module"></script>
+    <link rel="stylesheet" href="./game.style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: aqua;
+        }
+
+        #continer {
+            width: 4800px;
+            height: 1440px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, 3rem);
+            grid-template-rows: repeat(auto-fill, 3rem);
+
+        }
+
+        @font-face {
+            font-family: 'minecraft';
+            src: url(./MinecraftRegular-Bmg3.otf) format('opentype')
+        }
+
+        .stack {
+            position: fixed;
+            top: 250px;
+            margin-left: 15px;
+            width: 48px;
+            height: 260px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .item {
+            width: 48px;
+            height: 48px;
+            align-content: center;
+            text-align: center;
+            display: flex;
+            margin-top: 10px;
+        }
+
+        
+        .cell {
+            background-color: #87CEEB;
+        }
+        
+        .cell:hover {
+            border: 1.5px black solid;
+        }
+        
+        .grass {
+            background-image: url("./assets/grass.png");
+            background-size: cover;
+            height: 48px;
+        }
+        
+        .dirt {
+            background-image: url("./assets/dirt.png");
+            background-size: cover;
+            height: 48px;
+            
+        }
+        
+        .stone {
+            background-image: url("./assets/stone.png");
+            background-size: cover;
+            height: 48px;
+            
+        }
+        
+        .bedrock {
+            background-image: url("./assets/bedrock.png");
+            background-size: cover;
+            
+        }
+            
+            .trunk {
+                background-image: url("./assets/trunk.png");
+                background-size: cover;
+                height: 48px;
+            }
+            
+            .leaves {
+                background-image: url("./assets/leaves.png");
+                background-size: cover;
+                height: 48px;
+            } 
+
+            .quantity {
+                display: flex;
+                flex-direction: column;
+                justify-content: end;
+                /* justify-content: right; */
+                font-family: 'minecraft', sans-serif;
+            }
+            </style>
+
+</head>
+
+
+<body>
+    <div id="continer">
+        <section id="tools" class="tools">
+            <div id="pickaxe" class="tool item"><img src="./assets/pickaxe.png" alt="Pickaxe" /></div>
+            <div id="axe" class="tool item"><img src="./assets/axe.png" alt="Axe" /></div>
+            <div id="shovel" class="tool item"><img src="./assets/shovel.png" alt="Shovel" /></div>
+            <div id="shears" class="tool item"><img src="./assets/shears.png" alt="Shears" /></div>
+        </section>
+
+        <div class="stack" id="stack"></div>
+    </div>
+</body>
+
+
+</html>
