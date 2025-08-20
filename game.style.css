@@ -1,9 +1,14 @@
 section.tools {
   position: fixed;
+  margin-left: 15px;
 }
 
 .tool.selected {
   outline: 2px solid gold;
   border-radius: 4px;
+}
+
+.tool:hover {
+  cursor: pointer;
 }
 
