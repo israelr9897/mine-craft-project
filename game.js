@@ -1,4 +1,4 @@
-const toolElements = document.querySelectorAll(".tool");
+const toolElements = document.querySelectorAll(".tool"); // Select all tool elements
 const continer = document.getElementById("continer");
 
 const tools = {
@@ -9,23 +9,34 @@ const tools = {
 };
 
 let handItem = ""; // The tool currently selected by the user
+let selectedTool = null; // Tracks the currently selected tool
 
-// Select all tool elements
-toolElements.forEach((toolEl) => {
+toolElements.forEach(toolEl => {
   toolEl.addEventListener("click", () => {
-    // Clear previously selected tools
-    toolElements.forEach((el) => el.classList.remove("selected"));
+    if (selectedTool === toolEl) {
+      // Same tool clicked again → unselect
+      toolEl.classList.remove("selected");
+      selectedTool = null;
+      handItem = "";
+      document.body.style.cursor = "auto";
+    } else {
+      // New tool selected
+      toolElements.forEach(el => el.classList.remove("selected")); // Clear previous
+      toolEl.classList.add("selected"); // Highlight current
 
-    // Set the new hand item from the element's id
-    handItem = toolEl.id;
-    console.log(handItem);
+      handItem = toolEl.id;
+      selectedTool = toolEl;
 
-    // Add a visual indication (like border or background)
-    toolEl.classList.add("selected");
-
-        document.body.style.cursor = `url(./assets/${handItem}.webp), auto`;
-    });
+      // Update cursor to match selected tool icon
+      changeCursor()
+    }
+  });
 });
+
+
+function changeCursor() {
+  document.body.style.cursor = `url(./assets/cursor/${handItem}.png), auto`;
+}
 
 function clickRemove(div) {
   if(!tools[handItem].includes(div.classList[1]))return
