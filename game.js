@@ -68,15 +68,10 @@ function plusQuantity(quantityKind) {
         quantity.innerText = 0
     }
     quantity.innerText++
-
-
-
 }
 function lessQuantity(quantityKind) {
     const quantity = document.getElementById(quantityKind + "Quantity")
     quantity.innerText--
-    
-
 }
 
 function insertImg(imgKind) {
