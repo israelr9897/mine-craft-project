@@ -39,24 +39,24 @@
                 img.alt = "stone"
             }
         }
-        
-        </script>
 
-<style>
-    body {
-        background-color: aqua;
-    }
-    
-    #continer {
-        width: 4800px;
-        height: 1440px;
-        display: grid;
-        grid-template-columns: repeat(auto-fill, 3rem);
-        grid-template-rows: repeat(auto-fill, 3rem);
-    }
-    
-    .stack {
-        position: absolute;
+    </script>
+    <link rel="stylesheet" href="./game.style.css">
+    <style>
+        body {
+            background-color: aqua;
+        }
+
+        #continer {
+            width: 4800px;
+            height: 1440px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, 3rem);
+            grid-template-rows: repeat(auto-fill, 3rem);
+        }
+
+        .stack {
+            position: absolute;
             top: 192px;
             margin-left: 20px;
         }
@@ -136,46 +136,46 @@
 
 
 <body>
-   <section id="tools" class="tools">
-      <div id="pickaxe" class="tool"><img src="./assets/pickaxe.webp" alt="Pickaxe" /></div>
-      <div id="axe" class="tool"><img src="./assets/axe.webp" alt="Axe" /></div>
-      <div id="shovel" class="tool"><img src="./assets/shovel.webp" alt="Shovel" /></div>
-      <div id="shears" class="tool"><img src="./assets/shears.webp" alt="Shears" /></div>
-    </section>
-  
-    <div class="stack">
-        <div class="item" id="leaves">
-            <img id="leavesImg">
-            <span class="quantity">
-
-            </span>
-        </div>
-        <div class="item" id="log">
-            <img id="logImg">
-            <span class="quantity">
-                
-            </span>
-        </div>
-        <div class="item" id="grass">
-            <img id="grassImg">
-            <span class="quantity">
-
-            </span>
-        </div>
-        <div class="item" id="dirt">
-            <img id="dirtImg">
-            <span class="quantity">
-
-            </span>
-        </div>
-        <div class="item" id="stones">
-            <img id="stonesImg">
-            <span class="quantity">
-
-            </span>
-        </div>
-    </div>
     <div id="continer">
+        <section id="tools" class="tools">
+            <div id="pickaxe" class="tool"><img src="./assets/pickaxe.webp" alt="Pickaxe" /></div>
+            <div id="axe" class="tool"><img src="./assets/axe.webp" alt="Axe" /></div>
+            <div id="shovel" class="tool"><img src="./assets/shovel.webp" alt="Shovel" /></div>
+            <div id="shears" class="tool"><img src="./assets/shears.webp" alt="Shears" /></div>
+        </section>
+
+        <div class="stack">
+            <div class="item" id="leaves">
+                <img id="leavesImg">
+                <span class="quantity">
+
+                </span>
+            </div>
+            <div class="item" id="log">
+                <img id="logImg">
+                <span class="quantity">
+
+                </span>
+            </div>
+            <div class="item" id="grass">
+                <img id="grassImg">
+                <span class="quantity">
+
+                </span>
+            </div>
+            <div class="item" id="dirt">
+                <img id="dirtImg">
+                <span class="quantity">
+
+                </span>
+            </div>
+            <div class="item" id="stones">
+                <img id="stonesImg">
+                <span class="quantity">
+
+                </span>
+            </div>
+        </div>
         <!-- <div class="tree">
             <div class="trunk"></div>
         </div> -->
@@ -184,4 +184,3 @@
 
 
 </html>
-

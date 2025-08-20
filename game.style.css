@@ -1,5 +1,6 @@
 section.tools {
     position: absolute;
+    top: 0;
 
 }
 .tool.selected {
