@@ -5,7 +5,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2D MineCraft</title>
-    <script src="./game.js" defer></script>
+    <script src="./game.js" defer>
+        function plusQuantity() {
+            const quantity = document.getElementsByClassName("quantity")
+            quantity++
+
+        }
+        function lessQuantity() {
+            const quantity = document.querySelector("quantity")
+            quantity--
+        }
+
+        function insertImg(imgKind) {
+            const img = document.getElementById(imgKind + "Img")
+            if (imgKind === "leaves") {
+                img.src = "assets/oak-log.png"
+                img.alt = "leaves"
+            }
+            else if (imgKind === "log") {
+                img.src = "assets/grass.png"
+                img.alt = "log"
+            }
+            else if (imgKind === "grass") {
+                img.src = "assets/dirt.png"
+                img.alt = "grass"
+            }
+            else if (imgKind === "dirt") {
+                img.src = "assets/stone.png"
+                img.alt = "dirt"
+            }
+            else if (imgKind === "stone") {
+                img.src = "assets/stone.png"
+                img.alt = "stone"
+            }
+        }
+
+    </script>
+
     <style>
         body {
             background-color: aqua;
@@ -27,8 +63,11 @@
             /* flex-wrap: nowrap; */
         }
 
-        .quantity{
-            
+        .quantity {
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            font-family: 'minecraft', sans-serif;
         }
     </style>
 
@@ -37,31 +76,31 @@
 <body>
     <div class="stack">
         <div class="item" id="leaves">
-            <img src="assets\oak-leaves.png" alt="">
+            <img id="leavesImg">
             <span class="quantity">
 
             </span>
         </div>
         <div class="item" id="log">
-            <img src="assets\oak-log.png" alt="">
+            <img id="logImg">
             <span class="quantity">
-
+                
             </span>
         </div>
         <div class="item" id="grass">
-            <img src="assets\grass.png" alt="">
+            <img id="grassImg">
             <span class="quantity">
 
             </span>
         </div>
         <div class="item" id="dirt">
-            <img src="assets\dirt.png" alt="">
+            <img id="dirtImg">
             <span class="quantity">
 
             </span>
         </div>
         <div class="item" id="stones">
-            <img src="assets\stone.png" alt="">
+            <img id="stonesImg">
             <span class="quantity">
 
             </span>
