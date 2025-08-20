@@ -1,3 +1,5 @@
+import { trees } from "./treesModels.js";
+
 const toolElements = document.querySelectorAll(".tool"); // Select all tool elements
 const continer = document.getElementById("continer");
 const stackHtml = document.getElementById("stack")
@@ -20,6 +22,15 @@ const tools = {
 };
 
 
+function createTree(local) {
+  const num = Math.floor(Math.random() * trees.length)
+  trees[num].forEach((l) => {
+    l.num.forEach((num) => {
+      allDivsList[local - num].classList.add(l.class);
+    });
+  });
+}
+
 let handItem = ""; // The tool currently selected by the user
 let selectedTool = null; // Tracks the currently selected tool
 
@@ -40,6 +51,7 @@ toolElements.forEach(toolEl => {
       handItem = toolEl.id;
       selectedTool = toolEl;
 
+
       // Update cursor to match selected tool icon
       changeCursor()
     }
@@ -59,9 +71,34 @@ function clickRemove(div) {
 
 const allDivsList = []
 
+let lastNumber = null;
+
+function getNumRandom(min, max) {
+  let num;
+  do {
+    num = Math.floor(Math.random() * (max - min + 1)) + min;
+    console.log("fun num:" , num);
+  } while (
+    lastNumber !== null &&
+    (num === lastNumber || Math.abs(num - lastNumber) === 1)
+  );
+
+  lastNumber = num;
+  return num;
+}
+
+const amountTrees = getNumRandom(7, 16);
+const treeLocal = [];
+for (let i = 0; i < amountTrees; i++) {
+  const num = getNumRandom(904, 995);
+  console.log(num);
+  treeLocal.push(num);
+}
+
 for (let i = 0; i < 100 * 30; i++) {
   const div = document.createElement("div");
   div.classList.add("cell");
+  if (treeLocal.includes(i)) createTree(i - 1);
   if (i >= 100 * 10 && i < 100 * 11) {
     div.classList.add("grass");
   } else if (i >= 100 * 11 && i < 100 * 15) {
@@ -74,9 +111,8 @@ for (let i = 0; i < 100 * 30; i++) {
   div.id = `cell-${i}`;
   div.addEventListener("click", () => clickRemove(div));
   continer.appendChild(div);
-  allDivsList.push(div)
+  allDivsList.push(div);
 }
-console.log(allDivsList);
 
 
 // function lessQuantity() {
