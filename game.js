@@ -2,28 +2,25 @@ import { trees } from "./treesModels.js";
 
 const toolElements = document.querySelectorAll(".tool"); // Select all tool elements
 const continer = document.getElementById("continer");
-const stackHtml = document.getElementById("stack")
-
-
+const stackHtml = document.getElementById("stack");
 
 const stack = {
   leaves: 0,
   trunk: 0,
   grass: 0,
   dirt: 0,
-  stone: 0
-}
-
-const tools = {
-  pickaxe: "stone",
-  axe: "trunk",
-  shovel: ["dirt", "grass"],
-  shears: "leaves",
+  stone: 0,
 };
 
+const tools = {
+  pickaxe: ["stone"],
+  axe: ["trunk"],
+  shovel: ["dirt", "grass"],
+  shears: ["leaves"],
+};
 
 function createTree(local) {
-  const num = Math.floor(Math.random() * trees.length)
+  const num = Math.floor(Math.random() * trees.length);
   trees[num].forEach((l) => {
     l.num.forEach((num) => {
       allDivsList[local - num].classList.add(l.class);
@@ -35,7 +32,7 @@ let handItem = ""; // The tool currently selected by the user
 let selectedTool = null; // Tracks the currently selected tool
 
 // Select all tool elements
-toolElements.forEach(toolEl => {
+toolElements.forEach((toolEl) => {
   toolEl.addEventListener("click", () => {
     if (selectedTool === toolEl) {
       // Same tool clicked again → unselect
@@ -45,31 +42,49 @@ toolElements.forEach(toolEl => {
       document.body.style.cursor = "auto";
     } else {
       // New tool selected
-      toolElements.forEach(el => el.classList.remove("selected")); // Clear previous
+      toolElements.forEach((el) => el.classList.remove("selected")); // Clear previous
       toolEl.classList.add("selected"); // Highlight current
 
       handItem = toolEl.id;
       selectedTool = toolEl;
 
-
       // Update cursor to match selected tool icon
-      changeCursor()
+      changeCursor(handItem);
     }
   });
 });
 
-
-function changeCursor() {
-  document.body.style.cursor = `url(./assets/cursor/${handItem}.png), auto`;
+function changeCursor(img) {
+  document.body.style.cursor = `url(./assets/cursor/${img}.png), auto`;
 }
 
 function clickRemove(div) {
-  if (!tools[handItem].includes(div.classList[1])) return
-  updateImageStack(div.classList[1])
-  div.className = "cell";
+  if (
+    div.className !== "cell" &&
+    tools[handItem]?.some((item) => div.className.includes(item))
+  ) {
+    updateImageStack(div.classList[1]);
+    div.className = "cell";
+  }
+  else if (action) {
+    if(div.className !== "cell") return
+    div.classList.add(action);
+    stack[action]--;
+    const quantity = document.getElementById(`p-${action}`);
+    if (!stack[action]) {
+      const divStack = document.getElementById(action);
+      divStack.remove();
+      quantity.remove();
+      action = null;
+      document.body.style.cursor = "default";
+      return;
+    }
+    quantity.innerText = stack[action];
+  }
+  return;
 }
 
-const allDivsList = []
+const allDivsList = [];
 
 let lastNumber = null;
 
@@ -77,7 +92,6 @@ function getNumRandom(min, max) {
   let num;
   do {
     num = Math.floor(Math.random() * (max - min + 1)) + min;
-    console.log("fun num:" , num);
   } while (
     lastNumber !== null &&
     (num === lastNumber || Math.abs(num - lastNumber) === 1)
@@ -91,7 +105,6 @@ const amountTrees = getNumRandom(7, 16);
 const treeLocal = [];
 for (let i = 0; i < amountTrees; i++) {
   const num = getNumRandom(904, 995);
-  console.log(num);
   treeLocal.push(num);
 }
 
@@ -114,31 +127,43 @@ for (let i = 0; i < 100 * 30; i++) {
   allDivsList.push(div);
 }
 
-
 // function lessQuantity() {
 //   const quantity = document.querySelector("quantity");
 //   quantity--;
 // }
 
 function updateImageStack(className) {
-  if(!stack[className]){
-    const p = document.createElement("p")
-    p.id = `p-${className}`
-    const div = document.createElement("div")
-    div.appendChild(p)
-    div.classList.add(className)
-    stackHtml.appendChild(div)
+  if (!stack[className]) {
+    const p = document.createElement("p");
+    p.id = `p-${className}`;
+    const div = document.createElement("div");
+    // div.appendChild(p);
+    div.classList.add(className);
+    div.id = className;
+    div.style = "border: 1.5px rgb(242, 28, 28) solid;";
+    stackHtml.appendChild(div);
+    stackHtml.appendChild(p);
+    div.addEventListener("click", (event) => clickBuild(event));
   }
-  stack[className]++
-  const quantity = document.getElementById(`p-${className}`)
-  quantity.innerText = stack[className]
-  quantity.classList.add("quantity")
+  stack[className]++;
+  const quantity = document.getElementById(`p-${className}`);
+  quantity.innerText = stack[className];
+  quantity.classList.add("quantity");
 }
 
+let activ = false;
+let action;
 
-// function clickBuild() {
-//   const resource = document.getElementById()
-//   resource.addEventListener("click", (e) => {
-
-//   })
-// }
+function clickBuild(event) {
+  handItem = "";
+  const imgName = event.target.className;
+  if (!activ || imgName !== action) {
+    changeCursor(imgName);
+    activ = true;
+    action = imgName;
+  } else {
+    document.body.style.cursor = "default";
+    activ = false;
+    action = null;
+  }
+}
