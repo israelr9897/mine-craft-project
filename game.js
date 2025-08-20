@@ -1,5 +1,16 @@
 const toolElements = document.querySelectorAll(".tool"); // Select all tool elements
 const continer = document.getElementById("continer");
+const stackHtml = document.getElementById("stack")
+
+
+
+const stack = {
+  leaves: 0,
+  trunk: 0,
+  grass: 0,
+  dirt: 0,
+  stone: 0
+}
 
 const tools = {
   pickaxe: "stone",
@@ -8,9 +19,11 @@ const tools = {
   shears: "leaves",
 };
 
+
 let handItem = ""; // The tool currently selected by the user
 let selectedTool = null; // Tracks the currently selected tool
 
+// Select all tool elements
 toolElements.forEach(toolEl => {
   toolEl.addEventListener("click", () => {
     if (selectedTool === toolEl) {
@@ -39,13 +52,12 @@ function changeCursor() {
 }
 
 function clickRemove(div) {
-  if(!tools[handItem].includes(div.classList[1]))return
-  insertImg(div.classList[1])
-  plusQuantity(div.classList[1])
+  if (!tools[handItem].includes(div.classList[1])) return
+  updateImageStack(div.classList[1])
   div.className = "cell";
 }
 
-const allDivsList = [];
+const allDivsList = []
 
 for (let i = 0; i < 100 * 30; i++) {
   const div = document.createElement("div");
@@ -66,35 +78,31 @@ for (let i = 0; i < 100 * 30; i++) {
 }
 console.log(allDivsList);
 
-function plusQuantity(quantityKind) {
-  const quantity = document.getElementById(quantityKind + "Quantity")
-  if (quantity.innerText === undefined) {
-      quantity.innerText = 0
+
+// function lessQuantity() {
+//   const quantity = document.querySelector("quantity");
+//   quantity--;
+// }
+
+function updateImageStack(className) {
+  if(!stack[className]){
+    const p = document.createElement("p")
+    p.id = `p-${className}`
+    const div = document.createElement("div")
+    div.appendChild(p)
+    div.classList.add(className)
+    stackHtml.appendChild(div)
   }
-  quantity.innerText++
+  stack[className]++
+  const quantity = document.getElementById(`p-${className}`)
+  quantity.innerText = stack[className]
+  quantity.classList.add("quantity")
 }
 
-function lessQuantity() {
-  const quantity = document.querySelector("quantity");
-  quantity--;
-}
 
-function insertImg(imgKind) {
-  const img = document.getElementById(imgKind + "Img");
-  if (imgKind === "leaves") {
-    img.src = "assets/leaves.png";
-    img.alt = "leaves";
-  } else if (imgKind === "trunk") {
-    img.src = "assets/trunk.png";
-    img.alt = "trunk";
-  } else if (imgKind === "grass") {
-    img.src = "assets/grass.png";
-    img.alt = "grass";
-  } else if (imgKind === "dirt") {
-    img.src = "assets/dirt.png";
-    img.alt = "dirt";
-  } else if (imgKind === "stone") {
-    img.src = "assets/stone.png";
-    img.alt = "stone";
-  }
-}
+// function clickBuild() {
+//   const resource = document.getElementById()
+//   resource.addEventListener("click", (e) => {
+
+//   })
+// }
