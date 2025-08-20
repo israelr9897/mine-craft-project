@@ -8,3 +8,7 @@ section.tools {
   border-radius: 4px;
 }
 
+.tool:hover {
+  cursor: pointer;
+}
+
