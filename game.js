@@ -23,8 +23,8 @@ toolElements.forEach((toolEl) => {
     // Add a visual indication (like border or background)
     toolEl.classList.add("selected");
 
-    document.body.style.cursor = `url(./assets/${handItem}.webp), auto`;
-  });
+        document.body.style.cursor = `url(./assets/${handItem}.webp), auto`;
+    });
 });
 
 function clickRemove(div) {
@@ -83,4 +83,34 @@ function insertImg(imgKind) {
     img.src = "assets/stone.png";
     img.alt = "stone";
   }
+}
+function lessQuantity(quantityKind) {
+    const quantity = document.getElementById(quantityKind + "Quantity")
+    quantity.innerText--
+    
+
+}
+
+function insertImg(imgKind) {
+    const img = document.getElementById(imgKind + "Img")
+    if (imgKind === "leaves") {
+        img.src = "assets/leaves.png"
+        img.alt = "leaves"
+    }
+    else if (imgKind === "trunk") {
+        img.src = "assets/trunk.png"
+        img.alt = "trunk"
+    }
+    else if (imgKind === "grass") {
+        img.src = "assets/grass.png"
+        img.alt = "grass"
+    }
+    else if (imgKind === "dirt") {
+        img.src = "assets/dirt.png"
+        img.alt = "dirt"
+    }
+    else if (imgKind === "stone") {
+        img.src = "assets/stone.png"
+        img.alt = "stone"
+    }
 }

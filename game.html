@@ -26,6 +26,11 @@
             
         }
 
+        @font-face {
+            font-family: 'minecraft';
+            src: url(./MinecraftRegular-Bmg3.otf) format('opentype')
+        }
+
         .stack {
             position: absolute;
             top: 192px;
@@ -48,6 +53,7 @@
             justify-content: end;
             font-family: 'minecraft', sans-serif;
         }
+
 
 
         .cell {
@@ -118,31 +124,32 @@
         <div class="stack">
             <div class="item" id="leaves">
                 <img id="leavesImg">
-                <span class="quantity">
-
+                <span id="leavesQuantity">
+                    
                 </span>
             </div>
-            <div class="item" id="log">
-                <img id="logImg">
-                <span class="quantity">
-
+            <div class=" item" id="trunk">
+                <img id="trunkImg">
+                <span id="trunkQuantity" style="display: none;">
+                    
                 </span>
             </div>
             <div class="item" id="grass">
                 <img id="grassImg">
-                <span class="quantity">
-
+                <span id="grassQuantity">
+                    
                 </span>
             </div>
             <div class="item" id="dirt">
                 <img id="dirtImg">
-                <span class="quantity">
-
+                <span id="dirtQuantity">
+                    
                 </span>
             </div>
-            <div class="item" id="stones">
+            <div class="item" id="stone">
                 <img id="stoneImg">
-                <span class="quantity">
+                <span id="stoneQuantity">
+                    
 
                 </span>
             </div>
