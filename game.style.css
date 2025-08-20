@@ -1,8 +1,7 @@
 section.tools {
-    position: absolute;
-    top: 0;
-
+  position: fixed;
 }
+
 .tool.selected {
   outline: 2px solid gold;
   border-radius: 4px;

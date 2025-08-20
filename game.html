@@ -5,12 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2D MineCraft</title>
-    <script src="./game.js" defer>
-
-
-    </script>
+    <script src="./game.js" defer></script>
     <link rel="stylesheet" href="./game.style.css">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             background-color: aqua;
         }
@@ -21,6 +23,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, 3rem);
             grid-template-rows: repeat(auto-fill, 3rem);
+            
         }
 
         @font-face {
@@ -112,10 +115,10 @@
 <body>
     <div id="continer">
         <section id="tools" class="tools">
-            <div id="pickaxe" class="tool"><img src="./assets/pickaxe.webp" alt="Pickaxe" /></div>
-            <div id="axe" class="tool"><img src="./assets/axe.webp" alt="Axe" /></div>
-            <div id="shovel" class="tool"><img src="./assets/shovel.webp" alt="Shovel" /></div>
-            <div id="shears" class="tool"><img src="./assets/shears.webp" alt="Shears" /></div>
+            <div id="pickaxe" class="tool item"><img src="./assets/pickaxe.webp" alt="Pickaxe" /></div>
+            <div id="axe" class="tool item"><img src="./assets/axe.webp" alt="Axe" /></div>
+            <div id="shovel" class="tool item"><img src="./assets/shovel.webp" alt="Shovel" /></div>
+            <div id="shears" class="tool item"><img src="./assets/shears.webp" alt="Shears" /></div>
         </section>
 
         <div class="stack">
@@ -147,6 +150,7 @@
                 <img id="stoneImg">
                 <span id="stoneQuantity">
                     
+
                 </span>
             </div>
         </div>
