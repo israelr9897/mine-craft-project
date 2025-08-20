@@ -23,10 +23,6 @@ toolElements.forEach(toolEl => {
     // Add a visual indication (like border or background)
     toolEl.classList.add("selected");
 
-    if (block === tools.handItem) {
-        // for the select block
-    }
-
     document.body.style.cursor = `url(./assets/${handItem}.webp), auto`;
   });
 });
