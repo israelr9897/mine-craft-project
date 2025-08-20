@@ -10,7 +10,7 @@ for (let i = 0; i < 100 * 30; i++) {
 //   if(i === 10 || i === 11) div.classList.add("leaves");
 //   if(i === 110 || i === 111) div.classList.add("leaves");
   if (i >= 100 * 10 && i < 100 * 11) {
-    div.classList.add("dirt-top");
+    div.classList.add("grass");
   } else if (i >= 100 * 11 && i < 100 * 15) {
     div.classList.add("dirt");
   } else if (i >= 100 * 15 && i < 100 * 28) {
