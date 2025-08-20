@@ -29,9 +29,8 @@ toolElements.forEach((toolEl) => {
 
 function clickRemove(div) {
   if(!tools[handItem].includes(div.classList[1]))return
-  console.log(div.classList[1]);
   insertImg(div.classList[1])
-  plusQuantity()
+  plusQuantity(div.classList[1])
   div.className = "cell";
 }
 
@@ -56,10 +55,14 @@ for (let i = 0; i < 100 * 30; i++) {
 }
 console.log(allDivsList);
 
-function plusQuantity() {
-  const quantity = document.getElementsByClassName("quantity");
-  
+function plusQuantity(quantityKind) {
+  const quantity = document.getElementById(quantityKind + "Quantity")
+  if (quantity.innerText === undefined) {
+      quantity.innerText = 0
+  }
+  quantity.innerText++
 }
+
 function lessQuantity() {
   const quantity = document.querySelector("quantity");
   quantity--;
@@ -83,34 +86,4 @@ function insertImg(imgKind) {
     img.src = "assets/stone.png";
     img.alt = "stone";
   }
-}
-function lessQuantity(quantityKind) {
-    const quantity = document.getElementById(quantityKind + "Quantity")
-    quantity.innerText--
-    
-
-}
-
-function insertImg(imgKind) {
-    const img = document.getElementById(imgKind + "Img")
-    if (imgKind === "leaves") {
-        img.src = "assets/leaves.png"
-        img.alt = "leaves"
-    }
-    else if (imgKind === "trunk") {
-        img.src = "assets/trunk.png"
-        img.alt = "trunk"
-    }
-    else if (imgKind === "grass") {
-        img.src = "assets/grass.png"
-        img.alt = "grass"
-    }
-    else if (imgKind === "dirt") {
-        img.src = "assets/dirt.png"
-        img.alt = "dirt"
-    }
-    else if (imgKind === "stone") {
-        img.src = "assets/stone.png"
-        img.alt = "stone"
-    }
 }
