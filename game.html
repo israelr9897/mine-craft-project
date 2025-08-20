@@ -1,19 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2D MineCraft</title>
-    <link rel="stylesheet" href="game.style.css">
-    <script src="./game.js" defer></script>
-  </head>
-  <body>
-    <section id="tools" class="tools">
+    <script src="./game.js" defer>
+        function plusQuantity() {
+            const quantity = document.getElementsByClassName("quantity")
+            quantity++
+
+        }
+        function lessQuantity() {
+            const quantity = document.querySelector("quantity")
+            quantity--
+        }
+
+        function insertImg(imgKind) {
+            const img = document.getElementById(imgKind + "Img")
+            if (imgKind === "leaves") {
+                img.src = "assets/oak-log.png"
+                img.alt = "leaves"
+            }
+            else if (imgKind === "log") {
+                img.src = "assets/grass.png"
+                img.alt = "log"
+            }
+            else if (imgKind === "grass") {
+                img.src = "assets/dirt.png"
+                img.alt = "grass"
+            }
+            else if (imgKind === "dirt") {
+                img.src = "assets/stone.png"
+                img.alt = "dirt"
+            }
+            else if (imgKind === "stone") {
+                img.src = "assets/stone.png"
+                img.alt = "stone"
+            }
+        }
+        
+        </script>
+
+<style>
+    body {
+        background-color: aqua;
+    }
+    
+    #continer {
+        width: 4800px;
+        height: 1440px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 3rem);
+        grid-template-rows: repeat(auto-fill, 3rem);
+    }
+    
+    .stack {
+        position: absolute;
+            top: 192px;
+            margin-left: 20px;
+        }
+
+        .item {
+            width: 48px;
+            height: 48px;
+            align-content: center;
+            text-align: center;
+            display: flex;
+            margin-top: 10px;
+            /* flex-wrap: nowrap; */
+        }
+
+        .quantity {
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            font-family: 'minecraft', sans-serif;
+        }
+
+
+        .cell {
+            background-color: #87CEEB;
+        }
+
+        .cell:hover {
+            border: 1.5px black solid;
+        }
+
+        .grass {
+            background-image: url("./assets/grass.png");
+            background-size: cover;
+        }
+
+        .dirt {
+            background-image: url("./assets/dirt.png");
+            background-size: cover;
+
+        }
+
+        .stone {
+            background-image: url("./assets/stone.png");
+            background-size: cover;
+
+        }
+
+        .bedrock {
+            background-image: url("./assets/bedrock.png");
+            background-size: cover;
+
+        }
+
+        /* .tree {
+            width: 336px;
+            height: 432px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, 3rem);
+            grid-template-rows: repeat(auto-fill, 3rem);
+        }
+
+        .trunk {
+            grid-row: 3/5;
+            background-image: url("./assets/trunk.png");
+            background-size: cover;
+
+        }
+
+        .leaves {
+            background-image: url("./assets/leaves.png");
+            background-size: cover;
+
+        } */
+    </style>
+
+</head>
+
+
+<body>
+   <section id="tools" class="tools">
       <div id="pickaxe" class="tool"><img src="./assets/pickaxe.webp" alt="Pickaxe" /></div>
       <div id="axe" class="tool"><img src="./assets/axe.webp" alt="Axe" /></div>
       <div id="shovel" class="tool"><img src="./assets/shovel.webp" alt="Shovel" /></div>
       <div id="shears" class="tool"><img src="./assets/shears.webp" alt="Shears" /></div>
     </section>
+  
+    <div class="stack">
+        <div class="item" id="leaves">
+            <img id="leavesImg">
+            <span class="quantity">
 
-  </body>
+            </span>
+        </div>
+        <div class="item" id="log">
+            <img id="logImg">
+            <span class="quantity">
+                
+            </span>
+        </div>
+        <div class="item" id="grass">
+            <img id="grassImg">
+            <span class="quantity">
+
+            </span>
+        </div>
+        <div class="item" id="dirt">
+            <img id="dirtImg">
+            <span class="quantity">
+
+            </span>
+        </div>
+        <div class="item" id="stones">
+            <img id="stonesImg">
+            <span class="quantity">
+
+            </span>
+        </div>
+    </div>
+    <div id="continer">
+        <!-- <div class="tree">
+            <div class="trunk"></div>
+        </div> -->
+    </div>
+</body>
+
+
 </html>
+
