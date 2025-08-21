@@ -72,7 +72,7 @@ function clickRemove(div) {
     div.className = "cell";
   }
   else if (action) {
-    if(div.className !== "cell") return
+    if (div.className !== "cell") return
     div.classList.add(action);
     stack[action]--;
     const quantity = document.getElementById(`p-${action}`);
@@ -176,11 +176,12 @@ function clickBuild(event) {
   }
 }
 
-menuBtn.addEventListener("click",(e)=>{
+menuBtn.addEventListener("click", (e) => {
   console.log(12);
   window.location.href = "index.html"
 })
 
-newWorldBtn.addEventListener("click",(e)=>{
-
+newWorldBtn.addEventListener("click", (e) => {
+  localStorage.removeItem("gameState");
+  window.location.href = "game.html";
 })
