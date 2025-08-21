@@ -11,6 +11,6 @@ const newGameBtn = document.getElementById("btn1");
     if (state) {
       window.location.href = "game.html";
     } else {
-      alert("אין משחק שמור!");
+      alert("There is no saved game!");
     }
   });
