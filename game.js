@@ -3,6 +3,8 @@ import { trees } from "./treesModels.js";
 const toolElements = document.querySelectorAll(".tool"); // Select all tool elements
 const continer = document.getElementById("continer");
 const stackHtml = document.getElementById("stack");
+const menuBtn = document.getElementById("btn1")
+const newWorldBtn = document.getElementById("btn2")
 
 const stack = {
   leaves: 0,
@@ -173,3 +175,12 @@ function clickBuild(event) {
     action = null;
   }
 }
+
+menuBtn.addEventListener("click",(e)=>{
+  console.log(12);
+  window.location.href = "index.html"
+})
+
+newWorldBtn.addEventListener("click",(e)=>{
+
+})
