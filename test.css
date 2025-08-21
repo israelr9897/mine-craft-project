@@ -23,14 +23,14 @@ body {
 }
 
 .header {
-    height: 14%;
+    height: 15%;
     background-color: #018a8a;
     color: #93cfdf;
 
 }
 
 .main {
-    height: 74%;
+    height: 75%;
     display: flex;
     gap: 10px;
     padding: 10px 0;
@@ -50,7 +50,7 @@ body {
 }
 
 .footer {
-    height: 9%;
+    height: 10%;
     background-color: #018a8a;
     color: #93cfdf;
 
