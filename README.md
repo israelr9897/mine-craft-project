@@ -16,10 +16,10 @@ Players gather resources and use them to construct structures in a dynamic, inte
 ## Screenshots
 
 *Main Menu*  
-![Menu Screenshot](assets/menu.png)
+![Menu Screenshot](assets/indexPage.jpg)
 
 *Gameplay Screen*  
-![Game Screenshot](assets/gaime.png)
+![Game Screenshot](assets/gamePaje.jpg)
 
 ---
 
