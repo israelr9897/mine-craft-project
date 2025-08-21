@@ -3,6 +3,8 @@ import { trees } from "./treesModels.js";
 const toolElements = document.querySelectorAll(".tool"); // Select all tool elements
 const continer = document.getElementById("continer");
 const stackHtml = document.getElementById("stack");
+const menuBtn = document.getElementById("btn1")
+const newWorldBtn = document.getElementById("btn2")
 
 //רשימה שמכילה את כל תאי העולם
 const allDivsList = [];
@@ -15,6 +17,7 @@ let selectedTool = null;
 
 //האם נמצא במצב בניה
 let activ = false;
+
 //מצב הבניה בו נמצא
 let action;
 
@@ -199,5 +202,15 @@ function StartBuild(event) {
     action = null;
   }
 }
+
+menuBtn.addEventListener("click", (e) => {
+  console.log(12);
+  window.location.href = "index.html"
+})
+
+newWorldBtn.addEventListener("click", (e) => {
+  localStorage.removeItem("gameState");
+  window.location.href = "game.html";
+})
 
 startrGame();
