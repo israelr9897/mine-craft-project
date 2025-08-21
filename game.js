@@ -19,6 +19,9 @@ const tools = {
   shears: ["leaves"],
 };
 
+// // save game
+// localStorage.setItem("gameState")
+
 function createTree(local) {
   const num = Math.floor(Math.random() * trees.length);
   trees[num].forEach((l) => {
@@ -55,7 +58,7 @@ toolElements.forEach((toolEl) => {
 });
 
 function changeCursor(img) {
-  document.body.style.cursor = `url(./assets/cursor/${img}.png), auto`;
+  document.body.style.cursor = `url(./assets/${img}.png), auto`;
 }
 
 function clickRemove(div) {
@@ -155,6 +158,9 @@ let activ = false;
 let action;
 
 function clickBuild(event) {
+  toolElements.forEach((el) => el.classList.remove("selected"));
+
+  selectedTool = null;
   handItem = "";
   const imgName = event.target.className;
   if (!activ || imgName !== action) {
