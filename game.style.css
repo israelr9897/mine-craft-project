@@ -108,7 +108,7 @@ section.tools {
 }
 
 .stack div {
-  border: 1.5px white solid;
+  border: 1.5px rgb(242, 28, 28) solid;
   cursor: pointer;
 
 }
@@ -126,4 +126,3 @@ section.tools {
   border: 3px rgb(242, 28, 28) solid;
 
 }
-
