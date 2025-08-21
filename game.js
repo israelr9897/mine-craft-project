@@ -4,6 +4,21 @@ const toolElements = document.querySelectorAll(".tool"); // Select all tool elem
 const continer = document.getElementById("continer");
 const stackHtml = document.getElementById("stack");
 
+//רשימה שמכילה את כל תאי העולם
+const allDivsList = [];
+
+// The tool currently selected by the user
+let handItem = "";
+
+// Tracks the currently selected tool
+let selectedTool = null;
+
+//האם נמצא במצב בניה
+let activ = false;
+//מצב הבניה בו נמצא
+let action;
+
+//מחסנית כמות התאים שנכרתו
 const stack = {
   leaves: 0,
   trunk: 0,
@@ -12,6 +27,7 @@ const stack = {
   stone: 0,
 };
 
+//כלי העבודה, ולמה מתאימים
 const tools = {
   pickaxe: ["stone"],
   axe: ["trunk"],
@@ -22,6 +38,7 @@ const tools = {
 // // save game
 // localStorage.setItem("gameState")
 
+//יוצר עצים בצורה רנדומלית
 function createTree(local) {
   const num = Math.floor(Math.random() * trees.length);
   trees[num].forEach((l) => {
@@ -30,9 +47,6 @@ function createTree(local) {
     });
   });
 }
-
-let handItem = ""; // The tool currently selected by the user
-let selectedTool = null; // Tracks the currently selected tool
 
 // Select all tool elements
 toolElements.forEach((toolEl) => {
@@ -61,92 +75,105 @@ function changeCursor(img) {
   document.body.style.cursor = `url(./assets/${img}.png), auto`;
 }
 
-function clickRemove(div) {
-  if (
-    div.className !== "cell" &&
-    tools[handItem]?.some((item) => div.className.includes(item))
-  ) {
+// פונקציה המוחקת אלמנט מהעולם
+function cellRemove(div) {
+  console.log("cellRemove");
+  if (tools[handItem]?.some((item) => div.className.includes(item))) {
     updateImageStack(div.classList[1]);
     div.className = "cell";
   }
-  else if (action) {
-    if(div.className !== "cell") return
-    div.classList.add(action);
-    stack[action]--;
-    const quantity = document.getElementById(`p-${action}`);
-    if (!stack[action]) {
-      const divStack = document.getElementById(action);
-      divStack.remove();
-      quantity.remove();
-      action = null;
-      document.body.style.cursor = "default";
-      return;
-    }
-    quantity.innerText = stack[action];
-  }
-  return;
 }
 
-const allDivsList = [];
+//פונקציה המאפסת אלמנט במחסנית
+function reasetdivOnStack(quantity) {
+  const divStack = document.getElementById(action);
+  divStack.remove();
+  quantity.remove();
+  action = null;
+  document.body.style.cursor = "default";
+}
 
-let lastNumber = null;
+//פונקציה הבונה תא
+function cellBuild(div) {
+  console.log("cellBuild");
+  div.classList.add(action);
+  stack[action]--;
+  const quantity = document.getElementById(`p-${action}`);
+  if (stack[action] === 0) {
+    reasetdivOnStack(quantity);
+  } else {
+    quantity.innerText = stack[action];
+  }
+}
 
+//פונקציה שמופעלת בעת לחיצה על תא
+function clickDiv(div) {
+  console.log("clickDiv");
+  if (div.className !== "cell") {
+    cellRemove(div);
+  } else if (action) {
+    cellBuild(div);
+  }
+}
+
+//פונקציה המחזירה מספר רנדומלי
 function getNumRandom(min, max) {
-  let num;
-  do {
-    num = Math.floor(Math.random() * (max - min + 1)) + min;
-  } while (
-    lastNumber !== null &&
-    (num === lastNumber || Math.abs(num - lastNumber) === 1)
-  );
-
-  lastNumber = num;
+  let num = Math.floor(Math.random() * (max - min + 1)) + min;
   return num;
 }
 
-const amountTrees = getNumRandom(7, 16);
-const treeLocal = [];
-for (let i = 0; i < amountTrees; i++) {
-  const num = getNumRandom(904, 995);
-  treeLocal.push(num);
-}
-
-for (let i = 0; i < 100 * 30; i++) {
-  const div = document.createElement("div");
-  div.classList.add("cell");
-  if (treeLocal.includes(i)) createTree(i - 1);
-  if (i >= 100 * 10 && i < 100 * 11) {
-    div.classList.add("grass");
-  } else if (i >= 100 * 11 && i < 100 * 15) {
-    div.classList.add("dirt");
-  } else if (i >= 100 * 15 && i < 100 * 28) {
-    div.classList.add("stone");
-  } else if (i >= 100 * 28) {
-    div.classList.add("bedrock");
+//פונקציה המחזירה רשימה של מיקומים רנדומליים ליצירת עצים
+function getLocationForTrees() {
+  const amountTrees = getNumRandom(7, 16);
+  const treeLocal = [];
+  for (let i = 0; i < amountTrees; i++) {
+    const num = getNumRandom(904, 995);
+    treeLocal.push(num);
   }
-  div.id = `cell-${i}`;
-  div.addEventListener("click", () => clickRemove(div));
-  continer.appendChild(div);
-  allDivsList.push(div);
+  return treeLocal;
 }
 
-// function lessQuantity() {
-//   const quantity = document.querySelector("quantity");
-//   quantity--;
-// }
+//פונקציה המאתחלת עולם חדש
+function createNewBord() {
+  const treeLocal = getLocationForTrees();
+  for (let i = 0; i < 100 * 30; i++) {
+    const div = document.createElement("div");
+    div.classList.add("cell");
+    if (treeLocal.includes(i)) createTree(i - 1);
+    if (i >= 100 * 10 && i < 100 * 11) {
+      div.classList.add("grass");
+    } else if (i >= 100 * 11 && i < 100 * 15) {
+      div.classList.add("dirt");
+    } else if (i >= 100 * 15 && i < 100 * 28) {
+      div.classList.add("stone");
+    } else if (i >= 100 * 28) {
+      div.classList.add("bedrock");
+    }
+    div.id = `cell-${i + 1}`;
+    div.addEventListener("click", () => clickDiv(div));
+    continer.appendChild(div);
+    allDivsList.push(div);
+  }
+}
 
+//פונקציה שמתחילה משחק
+export function startrGame() {
+  if (!allDivsList.length) {
+    createNewBord();
+  }
+}
+
+//פונקציה המעדכנת ויוצרת אלמנטים במחסנית
 function updateImageStack(className) {
-  if (!stack[className]) {
+  if (stack[className] === 0) {
     const p = document.createElement("p");
     p.id = `p-${className}`;
     const div = document.createElement("div");
-    // div.appendChild(p);
     div.classList.add(className);
     div.id = className;
-    div.style = "border: 1.5px rgb(242, 28, 28) solid;";
     stackHtml.appendChild(div);
     stackHtml.appendChild(p);
-    div.addEventListener("click", (event) => clickBuild(event));
+    div.addEventListener("click", (event) => StartBuild(event));
   }
   stack[className]++;
   const quantity = document.getElementById(`p-${className}`);
@@ -154,14 +181,13 @@ function updateImageStack(className) {
   quantity.classList.add("quantity");
 }
 
-let activ = false;
-let action;
-
-function clickBuild(event) {
+//פונקציה המאתחלת מצב בניה
+function StartBuild(event) {
+  console.log("startBuild");
   toolElements.forEach((el) => el.classList.remove("selected"));
-
   selectedTool = null;
   handItem = "";
+
   const imgName = event.target.className;
   if (!activ || imgName !== action) {
     changeCursor(imgName);
@@ -173,3 +199,5 @@ function clickBuild(event) {
     action = null;
   }
 }
+
+startrGame();
