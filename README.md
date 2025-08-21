@@ -19,7 +19,7 @@ Players gather resources and use them to construct structures in a dynamic, inte
 ![Menu Screenshot](assets/indexPage.jpg)
 
 *Gameplay Screen*  
-![Game Screenshot](assets/gamePaje.jpg)
+![Game Screenshot](assets/gamePage.jpg)
 
 ---
 
