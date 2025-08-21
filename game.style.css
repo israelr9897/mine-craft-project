@@ -108,7 +108,7 @@ section.tools {
 }
 
 .stack div {
-  border: 1.5px white solid;
+  border: 1.5px rgb(242, 28, 28) solid;
   cursor: pointer;
 
 }
@@ -127,3 +127,45 @@ section.tools {
 
 }
 
+.side-menu {
+  background-color: #86CCE9;
+}
+
+#btn1 {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background-color: #A0A0A0;
+  color: white;
+  font-family: minecraft;
+  font-size: 16px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: 2px solid #707070;
+  box-shadow: 0px 3px 1px #707070;
+}
+
+#btn2 {
+  position: fixed;
+  top: 10px;
+  left: 100px;
+  background-color: #A0A0A0;
+  color: white;
+  font-family: minecraft;
+  font-size: 16px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: 2px solid #707070;
+  box-shadow: 0px 3px 1px #707070;
+}
+
+.btn1:active,
+.btn2:active {
+  transform: translateY(5px);
+}
+
+.btn1:hover,
+.btn2:hover {
+  transform: translateY(5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
