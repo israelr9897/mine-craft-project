@@ -38,8 +38,6 @@ const tools = {
   shears: ["leaves"],
 };
 
-// // save game
-// localStorage.setItem("gameState")
 
 //יוצר עצים בצורה רנדומלית
 function createTree(local) {
@@ -85,6 +83,7 @@ function cellRemove(div) {
     updateImageStack(div.classList[1]);
     div.className = "cell";
   }
+  saveGame()
 }
 
 //פונקציה המאפסת אלמנט במחסנית
@@ -94,6 +93,7 @@ function reasetdivOnStack(quantity) {
   quantity.remove();
   action = null;
   document.body.style.cursor = "default";
+  // 
 }
 
 //פונקציה הבונה תא
@@ -107,6 +107,7 @@ function cellBuild(div) {
   } else {
     quantity.innerText = stack[action];
   }
+  saveGame()
 }
 
 //פונקציה שמופעלת בעת לחיצה על תא
@@ -157,13 +158,65 @@ function createNewBord() {
     continer.appendChild(div);
     allDivsList.push(div);
   }
+  saveGame()
 }
 
 //פונקציה שמתחילה משחק
 export function startrGame() {
-  if (!allDivsList.length) {
+  const savingGame = localStorage.getItem("gameState")
+  if (!savingGame) {
     createNewBord();
+  } else {
+    loadSavingGame(savingGame)
   }
+}
+
+function saveGame() {
+  const grid = allDivsList.map(div => div.className) // saving the world state
+  const inv = {...stack} // saving the stack state
+  const state = {grid, inv}
+  localStorage.setItem("gameState", JSON.stringify(state))
+}
+
+function loadSavingGame(savingGame) {
+  const {grid, inv} = JSON.parse(savingGame)
+   // load board
+  buildBoardFromGrid(grid);
+
+  // load inventory
+  restorStack(inv);
+}
+
+function buildBoardFromGrid(grid) {
+  for (let i = 0; i < grid.length; i++) {
+    const div = document.createElement("div");
+    div.className = grid[i];     
+    div.id = `cell-${i + 1}`;
+    div.addEventListener("click", () => clickDiv(div));
+    continer.appendChild(div);
+    allDivsList.push(div);
+  }
+}
+
+function restorStack(inv) {
+  Object.keys(inv).forEach(key => {
+    for (let i = 0; i < inv[key]; i++) {
+      if (stack[key] === 0) {
+      const p = document.createElement("p");
+      p.id = `p-${key}`;
+      const div = document.createElement("div");
+      div.classList.add(key);
+      div.id = key;
+      stackHtml.appendChild(div);
+      stackHtml.appendChild(p);
+      div.addEventListener("click", (event) => StartBuild(event));
+      }
+      stack[key]++;
+      const quantity = document.getElementById(`p-${key}`);
+      quantity.innerText = stack[key];
+      quantity.classList.add("quantity");
+    }
+  })
 }
 
 //פונקציה המעדכנת ויוצרת אלמנטים במחסנית
@@ -182,6 +235,7 @@ function updateImageStack(className) {
   const quantity = document.getElementById(`p-${className}`);
   quantity.innerText = stack[className];
   quantity.classList.add("quantity");
+  saveGame()
 }
 
 //פונקציה המאתחלת מצב בניה
