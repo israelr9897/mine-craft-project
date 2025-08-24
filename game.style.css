@@ -66,21 +66,16 @@ section.tools {
 .grass {
   background-image: url("./assets/grass.png");
   background-size: cover;
-  height: 48px;
 }
 
 .dirt {
   background-image: url("./assets/dirt.png");
   background-size: cover;
-  height: 48px;
-
 }
 
 .stone {
   background-image: url("./assets/stone.png");
   background-size: cover;
-  height: 48px;
-
 }
 
 .bedrock {
@@ -92,13 +87,11 @@ section.tools {
 .trunk {
   background-image: url("./assets/trunk.png");
   background-size: cover;
-  height: 48px;
 }
 
 .leaves {
   background-image: url("./assets/leaves.png");
   background-size: cover;
-  height: 48px;
 }
 
 .quantity {
@@ -111,6 +104,7 @@ section.tools {
 .stack div {
   border: 1.5px rgb(242, 28, 28) solid;
   cursor: pointer;
+  height: 48px;
 
 }
 

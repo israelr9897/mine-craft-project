@@ -273,21 +273,23 @@ startrGame();
 
 
 
+// Exclude inventory from viewport auto-scroll
+stackHtml.classList.add("no-autoscroll");
+// === Viewport Edge Auto-Scroll with UI exclusions ===
+// Stops auto-scroll whenever the mouse is over UI elements you mark.
 
-// === Viewport Edge Auto-Scroll (no click needed) ===
-// Scrolls the page (window) automatically when the mouse approaches the screen edges.
-// All comments are in English.
+(function enableViewportEdgeAutoScroll(opts = {}) {
+  const EDGE = opts.edge ?? 40;            // px near edge that triggers auto-scroll
+  const MAX_SPEED = opts.maxSpeed ?? 1200; // px per second at the very edge
 
-(function enableViewportEdgeAutoScroll() {
-  const EDGE = 40;          // px near edge that triggers auto-scroll
-  const MAX_SPEED = 1200;   // px per second at the very edge
+  // Anything matching this selector will DISABLE auto-scroll when hovered.
+  const EXCLUDE_SELECTOR =
+    opts.exclude ??
+    '.no-autoscroll, [data-no-autoscroll], button, a, input, select, textarea';
 
   let mouseX = 0, mouseY = 0;
-  let rafId = null;
-  let lastTs = 0;
-  let active = false;
+  let rafId = null, lastTs = 0, active = false;
 
-  // Start / stop helpers
   function stop() {
     active = false;
     if (rafId !== null) {
@@ -296,74 +298,72 @@ startrGame();
     }
   }
 
-  // 0..EDGE distance -> 0..MAX_SPEED speed
   function speedFromDistance(d) {
     const t = Math.max(0, Math.min(1, (EDGE - d) / EDGE)); // 0..1
-    return t * MAX_SPEED; // px/s
+    return t * MAX_SPEED;                                   // px/s
   }
 
   function tick(ts) {
     if (!active) return;
     if (!lastTs) lastTs = ts;
-    const dt = Math.min(32, ts - lastTs) / 1000; // seconds; clamp spikes
+    const dt = Math.min(32, ts - lastTs) / 1000; // seconds
     lastTs = ts;
 
     const vw = window.innerWidth;
     const vh = window.innerHeight;
 
-    // distances from viewport edges
     const leftD   = mouseX;
     const rightD  = vw - mouseX;
     const topD    = mouseY;
     const bottomD = vh - mouseY;
 
-    let vx = 0, vy = 0; // + right/down, - left/up
-    if (leftD < EDGE)         vx = -speedFromDistance(leftD);
-    else if (rightD < EDGE)   vx =  speedFromDistance(rightD);
+    let vx = 0, vy = 0;
+    if (leftD < EDGE)        vx = -speedFromDistance(leftD);
+    else if (rightD < EDGE)  vx =  speedFromDistance(rightD);
 
-    if (topD < EDGE)          vy = -speedFromDistance(topD);
-    else if (bottomD < EDGE)  vy =  speedFromDistance(bottomD);
+    if (topD < EDGE)         vy = -speedFromDistance(topD);
+    else if (bottomD < EDGE) vy =  speedFromDistance(bottomD);
 
     if (vx !== 0 || vy !== 0) {
-      // clamp to page bounds
       const doc = document.documentElement;
       const maxX = Math.max(0, doc.scrollWidth  - vw);
       const maxY = Math.max(0, doc.scrollHeight - vh);
-
       const curX = window.scrollX || 0;
       const curY = window.scrollY || 0;
 
       let dx = vx * dt;
       let dy = vy * dt;
 
-      if (curX + dx < 0)      dx = -curX;
+      if (curX + dx < 0) dx = -curX;
       else if (curX + dx > maxX) dx = maxX - curX;
 
-      if (curY + dy < 0)      dy = -curY;
+      if (curY + dy < 0) dy = -curY;
       else if (curY + dy > maxY) dy = maxY - curY;
 
       if (dx || dy) window.scrollBy(dx, dy);
     }
 
     // stop loop when cursor leaves the edge zone
-    if (vx === 0 && vy === 0) {
-      active = false;
-      rafId = null;
-    } else {
-      rafId = requestAnimationFrame(tick);
-    }
+    if (vx === 0 && vy === 0) { active = false; rafId = null; }
+    else { rafId = requestAnimationFrame(tick); }
   }
 
-  // track mouse globally
   window.addEventListener('mousemove', (e) => {
+    // If mouse is over excluded UI, pause auto-scroll
+    if (e.target.closest(EXCLUDE_SELECTOR)) {
+      stop();
+      return;
+    }
+
     mouseX = e.clientX;
     mouseY = e.clientY;
+
     if (!active) {
       active = true;
       lastTs = 0;
       rafId = requestAnimationFrame(tick);
     }
-  });
+  }, { passive: true });
 
   window.addEventListener('blur', stop);
   document.addEventListener('mouseleave', stop);
